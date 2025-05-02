@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Food Pre-Order System</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Our Pre-Order Food System</h1>
+        <p>Pre-order your food to avoid queues and check availability in real-time!</p>
+    </header>
+
+    <div class="menu">
+        <div class="food-item" data-name="Pizza" data-price="10">
+            <div class="food-placeholder">🍕</div>
+            <h3>Pizza</h3>
+            <p class="price">$10.00</p>
+            <input type="number" min="0" value="0" class="quantity" />
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div class="food-item" data-name="Burger" data-price="7">
+            <div class="food-placeholder">🍔</div>
+            <h3>Burger</h3>
+            <p class="price">$7.00</p>
+            <input type="number" min="0" value="0" class="quantity" />
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <div class="food-item" data-name="Pasta" data-price="8">
+            <div class="food-placeholder">🍝</div>
+            <h3>Pasta</h3>
+            <p class="price">$8.00</p>
+            <input type="number" min="0" value="0" class="quantity" />
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="order-summary">
+        <h3>Order Summary</h3>
+        <ul class="order-items"></ul>
+        <p class="total">Total: $0.00</p>
+        <button id="place-order">Place Order</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Food Pre-Order System | All rights reserved</p>
+    </footer>
+
+    <!-- JavaScript to handle cart functionality -->
+    <script>
+        const quantityInputs = document.querySelectorAll(".quantity");
+        const orderItemsList = document.querySelector(".order-items");
+        const totalDisplay = document.querySelector(".total");
+        const placeOrderBtn = document.getElementById("place-order");
+        const buttons = document.querySelectorAll('.add-to-cart');
+
+        // Store data for the food items
+        const menuItems = [
+            { name: "Pizza", price: 10 },
+            { name: "Burger", price: 7 },
+            { name: "Pasta", price: 8 }
+        ];
+
+        // Update the order summary
+        function updateOrderSummary() {
+            let total = 0;
+            orderItemsList.innerHTML = ""; // Clear the order items list
+
+            quantityInputs.forEach((input, index) => {
+                const quantity = parseInt(input.value);
+                if (quantity > 0) {
+                    const item = menuItems[index];
+                    const itemTotal = quantity * item.price;
+                    total += itemTotal;
+
+                    // Add the item to the order summary
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${item.name} x${quantity} = $${itemTotal.toFixed(2)}`;
+                    orderItemsList.appendChild(listItem);
+                }
+            });
+
+            // Update total amount
+            totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Add event listeners for "Add to Cart" buttons and quantity input fields
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const quantityInput = button.previousElementSibling; // Get the quantity input element
+                quantityInput.value = parseInt(quantityInput.value) + 1; // Increase the quantity
+                updateOrderSummary(); // Update the order summary when item is added
+            });
+        });
+
+        quantityInputs.forEach(input => {
+            input.addEventListener('input', updateOrderSummary); // Update summary on quantity change
+        });
+
+        // Handle order placement
+        placeOrderBtn.addEventListener("click", () => {
+            if (orderItemsList.children.length === 0) {
+                alert("❌ No items in your cart.");
+            } else {
+                alert("✅ Your order has been placed successfully!");
+                // Clear the cart (optional)
+                quantityInputs.forEach(input => input.value = 0);
+                updateOrderSummary();
+            }
+        });
+    </script>
+
+</body>
+</html>
