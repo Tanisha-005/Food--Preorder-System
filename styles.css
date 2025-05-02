@@ -1,0 +1,179 @@
+/* Basic reset and font setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #333;
+    overflow: hidden;
+}
+
+/* Animated background */
+@keyframes gradientAnimation {
+    0% {
+        background: linear-gradient(45deg, #ff6a00, #ee0979);
+    }
+    25% {
+        background: linear-gradient(45deg, #ff8c00, #ff1f6f);
+    }
+    50% {
+        background: linear-gradient(45deg, #4ac29a, #f7ff00);
+    }
+    75% {
+        background: linear-gradient(45deg, #7b8e7f, #b9d6b7);
+    }
+    100% {
+        background: linear-gradient(45deg, #ff6a00, #ee0979);
+    }
+}
+
+body {
+    animation: gradientAnimation 10s ease infinite;
+    background-size: 400% 400%;
+}
+
+/* Header section */
+header {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    z-index: 10;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Menu Section */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px;
+    position: absolute;
+    top: 100px;
+    width: 80%;
+    z-index: 5;
+}
+
+.food-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.food-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.food-placeholder {
+    font-size: 4rem;
+}
+
+.food-item h3 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+
+.food-item p {
+    margin-top: 5px;
+    font-size: 1.2rem;
+}
+
+.food-item .quantity {
+    margin-top: 10px;
+    padding: 5px;
+    width: 50px;
+}
+
+.food-item .add-to-cart {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ff6a00;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.food-item .add-to-cart:hover {
+    background-color: #ee0979;
+}
+
+/* Order Summary */
+.order-summary {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    position: absolute;
+    bottom: 50px;
+    width: 80%;
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.order-summary h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.order-summary p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.order-summary ul {
+    list-style: none;
+}
+
+.order-summary li {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+#place-order {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    background-color: #ff6a00;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#place-order:hover {
+    background-color: #ee0979;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: white;
+    z-index: 10;
+}
